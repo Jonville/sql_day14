@@ -1,0 +1,63 @@
+---------------------20230323----------------------
+
+Oracle SQL Port 는 1521
+MySQL Port 는 3306
+
+
+IP = Internet Port
+
+IPv4 일반적은 255.255.255.255 만큼의 주소
+IPv6 엄청 큼 셀수없을만큼 큼
+
+Port
+	-> 각 프로그램의 특정 주소 ( 식별 주소 )
+	-> ex) chrome 쓸때 , eclipse 쓸때 각각의 포트로 연결시킨다.
+
+	well-known ports = > 고정적인 포트번호
+		0 ~ 1023 사이 포트번호 ...  말고도 많이 정해져있음
+
+
+
+-----------------------------------------------------------
+
+자바에서 DB로 연결 할수 있게 만드는 코드
+
+
+try {
+			Class.forName("com.mysql.jdbc.Driver"); // MySQL 드라이버 로드
+			Connection conn = DriverManager.getConnection
+					("jdbc:mysql://localhost:3306/sampledb", "root","test1234"); // JDBC 연결
+			System.out.println("DB 연결 완료");
+		} catch (ClassNotFoundException e) {
+			System.out.println("JDBC 드라이버 로드 에러");
+		} catch (SQLException e) {
+			System.out.println("DB 연결 오류");
+		}
+		
+
+-----------------------------------------------------------
+
+DB 는 hash 함수로 암호화 시킨다.
+
+hash함수는 값이 하나라도 바뀌면 완전 다른 값을 출력하게된다.
+
+hash 함수로 비밀번호를 관리한다.
+
+-----------------------------------------------------------
+
+Statement 클래스
+	-> SQL 문을 실행하기위해서 사용한다.
+	executeQuery()
+	executeUpdate()
+ResultSet 클래스			--executeQuery() 쓸때 씀
+	-> SQL 문 실행결과를 얻어오기위해 씀.
+	-> 결과 컬럼을 쓰고싶을때 쓸수있음.
+
+
+
+Statement stmt = conn.createStatement();
+ResultSet rs = stmt.executeQuery(select * from student);
+
+	보통 이렇게 사용.
+	stmt.executeQuery( SELECT 문 )
+	stmt.executeUpdate( INSERT , UPDATE, DELETE 문)
